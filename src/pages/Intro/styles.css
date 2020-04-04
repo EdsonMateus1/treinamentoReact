@@ -1,0 +1,70 @@
+.container-pricipal {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #FFEFD5;
+    transition: background-color 0.2s;
+}
+
+.intro-container {
+    max-width: 100%;
+    width: 360px;
+    margin: 10px 30px;
+    font-size: 20px;
+}
+.intro-container section button:hover {
+    filter: brightness(80%);
+}
+
+.intro-container footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+
+.last-ideas {
+    height: 100vh;
+    width: 100%;
+    max-width: 700px;
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    margin-top: 80px;
+}
+
+.last-ideas .idea {
+    background-color: #FAF0E6;
+    margin: 10px;
+    display: flex;
+    padding: 5px;
+    transition: transform 0.5s;
+}
+.last-ideas .idea:hover{
+	transform: scale(1.1);
+}
+
+.last-ideas .idea h3{
+    margin: 2px 0px;
+}
+
+.last-ideas .idea img {
+    height: 50px;
+    margin: 15px;
+  
+
+}
+.last-ideas .idea p{
+    font-size: 16px;
+    margin: 2px 0px;
+  
+}
+.last-ideas .idea .description{
+    font-size: 15px;
+   
+}
+
+.last-ideas .idea .conteudo a{
+   margin-top: 20px;
+}

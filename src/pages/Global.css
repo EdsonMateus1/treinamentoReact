@@ -1,0 +1,30 @@
+* {
+    margin: 0;
+    padding: 0;
+    outline: 0;
+    box-sizing: border-box;
+    font-family: monospace;
+}
+body{
+    background-color: #FFEFD5;
+}
+a{
+    color: #ff5f68;
+}
+
+.button{
+    width: 40%;
+    background: #ff5f68;
+    border-radius: 10px;
+    color: black;
+    font-weight: 600;
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
+    font-size: 15px;
+    line-height: 60px;
+    transition: filter 0.2s;
+    margin: 10px;
+    border: 1px solid brown;
+    box-shadow: 2px 2px 1px  rgba(192, 1,0, 0.2);
+}
