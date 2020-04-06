@@ -1,14 +1,26 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Logo from '../../assets/logo.png';
 import { Link } from 'react-router-dom';
+import api from '../../service/api';
 import '../Global.css';
 import './styles.css'
 
 export default function Intro() {
-    const [color, setcolor] = useState('#FFEFD5')
+    const [color, setcolor] = useState('#FFEFD5');
+    const [idea, setIdea] = useState([])
     const styles = {
         backgroundColor: color
     };
+
+    useEffect(() => {
+        api.get('idea')
+            .then(res => {
+                console.log(res.data);
+                console.log(typeof res.data);
+                setIdea(res.data)
+            })
+    }, [])
+
     return (
         <div style={styles} className="container-pricipal">
             <section className='intro-container'>
@@ -48,41 +60,22 @@ export default function Intro() {
                     </span>
                 </footer>
             </section>
+
             <section className='last-ideas'>
-                <div className="idea">
-                    <img src="https://image.flaticon.com/icons/svg/2728/2728900.svg" alt="uma imagem" />
-                    <div className="conteudo">
-                        <h3>Cursos onlines</h3>
-                        <p>Estudo</p>
-                        <div className="description">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                {idea.map(idea =>
+                    <div key={idea._id} className="idea">
+                        <img src="https://image.flaticon.com/icons/svg/2728/2728900.svg" alt="uma imagem" />
+                        <div className="conteudo">
+                            <h3>{idea.title}</h3>
+                            <p>{idea.category}</p>
+
+                            <div className="description">
+                                {idea.description}
+                            </div>
                         </div>
-                        <a href="#">Ir para a ideas</a>
                     </div>
-                </div>
-                <div className="idea">
-                    <img src="https://image.flaticon.com/icons/svg/2760/2760528.svg" alt="uma imagem" />
-                    <div className="conteudo">
-                        <h3>Cuidados</h3>
-                        <p>Saude</p>
-                        <div className="description">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                        </div>
-                        <a href="#">Ir para a ideas</a>
-                    </div>
-                </div>
-                <div className="idea">
-                    <img src="https://www.flaticon.com/premium-icon/icons/svg/2690/2690140.svg" alt="uma imagem" />
-                    <div className="conteudo">
-                        <h3>Ouvir musicas</h3>
-                        <p>Musicas</p>
-                        <div className="description">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                        </div>
-                        <a href="#">Ir para a ideas</a>
-                    </div>
-                </div>
+                )}
             </section>
         </div>
     );
-}
+};
