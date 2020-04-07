@@ -15,8 +15,8 @@ export default function Intro() {
     useEffect(() => {
         api.get('idea')
             .then(res => {
-                console.log(res.data);
-                console.log(typeof res.data);
+               // console.log(res.data);
+               // console.log(typeof res.data);
                 setIdea(res.data)
             })
     }, [])

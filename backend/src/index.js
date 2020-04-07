@@ -9,17 +9,17 @@ app.use(cors());
 app.use(express.json());
 
 
-app.get("/idea", (req, res) => {
-  Idea.find({})
-    .then(idea => {
+app.get("/idea", async (req, res) => {
+
+  const idea  = await Idea.find({})
+    try{
       return res.json(idea);
-    })
-    .catch(err => {
-      res.status(400).json({
-        err: true,
-        message: "no about found"
-      });
-    });
+    }catch{
+      return res.json({
+        erro:400,
+        message:'nao foi possivel listar'
+      })
+    }
 });
 
 app.post("/idea/register", async (req, res) => {
@@ -29,7 +29,7 @@ app.post("/idea/register", async (req, res) => {
     description
   } = req.body;
 
-  await Idea.create({
+   Idea.create({
     title,
     category,
     description,
