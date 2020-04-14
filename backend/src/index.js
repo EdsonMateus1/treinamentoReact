@@ -29,21 +29,23 @@ app.post("/idea/register", async (req, res) => {
     description
   } = req.body;
 
-   Idea.create({
+  await Idea.create({
     title,
     category,
     description,
-  }, err => {
-    if (err)
-      return res.status(400).json({
-        err: true,
-        message: "erro no cadastro"
-      });
-    return res.json({
-      err: false,
-      message: "cadastro realizado com sucesso"
-    });
   });
+  try{
+    return res.json({
+      erro:false,
+      message:'cadastro realizado'
+    })
+  }catch{
+    return res.json({
+      erro:true,
+      message:'cadastro falho'
+    })
+  }
+
 });
 
 app.listen(8080, err => {
