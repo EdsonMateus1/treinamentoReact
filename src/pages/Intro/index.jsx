@@ -7,9 +7,9 @@ import './styles.css'
 
 export default function Intro() {
     const [color, setcolor] = useState('#FFEFD5');
-    const [idea, setIdea] = useState([])
+    const [idea, setIdea] = useState([]);
     const styles = {
-        backgroundColor: color
+        backgroundColor: color,
     };
 
     useEffect(() => {
@@ -17,10 +17,12 @@ export default function Intro() {
             .then(res => {
                 // console.log(res.data);
                 // console.log(typeof res.data);
-                setIdea(res.data)
-            })
-    }, []);
-
+                setIdea(res.data);
+            });
+            
+    },[setIdea]);//com o array de dependencia vazio o useEffect irar executar somendo uma vez antes da rederizacao
+    console.log(idea);
+    
     return (
 
         <div style={styles} className="container-pricipal">
@@ -57,13 +59,15 @@ export default function Intro() {
 
                 <footer>
                     <span>
-                        Com♥️<a href="http://rocketseat.com.br">Rocketseat</a>
+                        organizacoes tabajara
                     </span>
                 </footer>
             </section>
 
             <section className='last-ideas'>
                 {idea.map(idea =>
+
+                    
                     <div key={idea._id} className="idea">
                         <img src="https://image.flaticon.com/icons/svg/2728/2728900.svg" alt="uma imagem" />
                         <div className="conteudo">
@@ -75,6 +79,7 @@ export default function Intro() {
                             </div>
                         </div>
                     </div>
+                    
                 )}
             </section>
 

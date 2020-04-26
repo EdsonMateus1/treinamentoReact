@@ -11,15 +11,18 @@ app.use(express.json());
 
 app.get("/idea", async (req, res) => {
 
-  const idea  = await Idea.find({})
-    try{
-      return res.json(idea);
-    }catch{
-      return res.json({
-        erro:400,
-        message:'nao foi possivel listar'
-      })
-    }
+  const idea = await Idea.find({})
+    .sort({_id : -1})
+    .limit(3)
+  
+  try {
+    return res.json(idea);
+  } catch{
+    return res.json({
+      erro: 400,
+      message: 'nao foi possivel listar'
+    })
+  }
 });
 
 app.post("/idea/register", async (req, res) => {
@@ -34,15 +37,15 @@ app.post("/idea/register", async (req, res) => {
     category,
     description,
   });
-  try{
+  try {
     return res.json({
-      erro:false,
-      message:'cadastro realizado'
+      erro: false,
+      message: 'cadastro realizado'
     })
-  }catch{
+  } catch{
     return res.json({
-      erro:true,
-      message:'cadastro falho'
+      erro: true,
+      message: 'cadastro falho'
     })
   }
 
